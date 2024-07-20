@@ -1,3 +1,4 @@
+
 # Documentación de la App Sweet Diet
 
 ## Términos y Condiciones de Uso de Sweet Diet
@@ -71,8 +72,10 @@ El usuario tiene los siguientes derechos respecto a su información personal:
 ### 8. Cambios en la Política de Privacidad
 **Sweet Diet** se reserva el derecho de actualizar esta política de privacidad en cualquier momento. Cualquier cambio será notificado al usuario a través de la aplicación o por otros medios de contacto. El uso continuado de la aplicación después de la notificación de cambios implica la aceptación de la nueva política de privacidad.
 
+
+
 ---
-# Plan.js README
+# Planes (Plan.js)
 
 ## Descripción
 Plan.js es un componente de React Native que permite a los usuarios ver y gestionar su plan nutricional diario. Este componente interactúa con Firebase para obtener y guardar datos, y utiliza una API Flask para generar comidas basadas en las necesidades calóricas del usuario, sus alergias y sus disgustos.
@@ -195,6 +198,7 @@ La API Flask genera un plan nutricional basado en las calorías diarias requerid
 }
 ```
 ---
+
 # Compra (.js)
 
 ## Descripción
@@ -969,6 +973,70 @@ const styles = StyleSheet.create({
 └── README.md
 
 ```
+
+## Datos utilizados en FireBase
+
+### Users
+
+- ActivityLevel
+
+- Birthdate
+
+- Edad
+
+- Email
+
+- Height
+
+- KcalDiarias
+
+- Name
+
+- PesoObjetivo
+
+- SelectedActivity
+
+- SelectedGender
+
+- Weight
+
+### Image_Meals
+
+- Url
+
+### User_Recipes
+
+- Almuerzo
+  - Bebida
+    - Calificacion
+    - Dificultad
+    - Ingredientes
+    - Kcal
+    - Preparacion
+    - Tiempo
+    - Titulo
+  - Plato
+    - Calificacion
+    - Dificultad
+    - Ingredientes
+    - Kcal
+    - Preparacion
+    - Tiempo
+    - Titulo
+  - Cena
+    - Calificacion
+    - Dificultad
+    - Ingredientes
+    - Kcal
+    - Preparacion
+    - Tiempo
+    - Titulo
+### User_Weights
+
+- Peso
+  - FechaDeSubida
+  - Peso
+
 
 ## Estilos
 
