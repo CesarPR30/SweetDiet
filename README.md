@@ -72,7 +72,129 @@ El usuario tiene los siguientes derechos respecto a su información personal:
 **Sweet Diet** se reserva el derecho de actualizar esta política de privacidad en cualquier momento. Cualquier cambio será notificado al usuario a través de la aplicación o por otros medios de contacto. El uso continuado de la aplicación después de la notificación de cambios implica la aceptación de la nueva política de privacidad.
 
 ---
+# Plan.js README
 
+## Descripción
+Plan.js es un componente de React Native que permite a los usuarios ver y gestionar su plan nutricional diario. Este componente interactúa con Firebase para obtener y guardar datos, y utiliza una API Flask para generar comidas basadas en las necesidades calóricas del usuario, sus alergias y sus disgustos.
+
+## Características
+- **Autenticación con Firebase**: El componente verifica que el usuario esté autenticado antes de realizar cualquier acción.
+- **Consulta y almacenamiento en Firebase**: Obtiene y guarda planes nutricionales del usuario en Firebase.
+- **Generación de comidas**: Genera un plan nutricional diario mediante una API Flask.
+- **Navegación por fechas**: Permite a los usuarios navegar a través de diferentes fechas para ver su plan nutricional.
+- **Visualización de imágenes**: Obtiene y muestra imágenes de los platos y bebidas utilizando una API de búsqueda de imágenes de Google.
+
+## Dependencias
+- `react-native`: Framework para construir aplicaciones móviles.
+- `firebase/auth`: Para autenticación de usuarios.
+- `firebase/firestore`: Para almacenar y recuperar datos de Firebase Firestore.
+- `moment`: Para manejo y manipulación de fechas.
+- `axios`: Para realizar solicitudes HTTP a la API.
+- `@react-navigation/native`: Para la navegación en la aplicación.
+- `@expo/vector-icons`: Para los íconos de navegación.
+
+## Estructura del Componente
+
+### Estado
+- `meals`: Lista de comidas para el día seleccionado.
+- `loading`: Indica si los datos están cargando.
+- `selectedDate`: Fecha seleccionada para mostrar el plan nutricional.
+- `noMealsMessage`: Mensaje a mostrar cuando no hay comidas disponibles.
+- `canGoBack`: Indica si se puede retroceder a una fecha anterior.
+
+### Efectos
+- `fetchUserData`: Se ejecuta al montar el componente y cada vez que cambia la fecha seleccionada. Obtiene los datos del usuario y su plan nutricional de Firebase, y si no hay comidas para la fecha seleccionada, llama a la API para generarlas.
+- `checkCanGoBack`: Se ejecuta al montar el componente y cada vez que cambia la fecha seleccionada para verificar si hay datos disponibles para la fecha anterior.
+
+### Funciones
+- `fetchMealsWithRetry`: Intenta obtener datos de la API hasta un número máximo de reintentos en caso de fallo.
+- `saveMealsToFirebase`: Guarda el plan nutricional generado en Firebase.
+- `fetchMealsFromFirebase`: Obtiene el plan nutricional del usuario de Firebase para una fecha específica.
+- `fetchImage`: Obtiene una imagen de un plato o bebida usando la API de búsqueda de imágenes de Google.
+- `handlePress`: Navega a la pantalla de detalles de una comida cuando se presiona una comida específica.
+- `renderItem`: Renderiza un elemento de comida.
+- `renderMealSection`: Renderiza una sección de comidas (Desayuno, Almuerzo, Cena).
+- `changeDate`: Cambia la fecha seleccionada.
+
+### Renderizado
+- Muestra el plan nutricional con la opción de navegar por fechas.
+- Muestra un indicador de carga mientras los datos se están obteniendo.
+- Muestra un mensaje cuando no hay comidas disponibles para la fecha seleccionada.
+- Renderiza las secciones de comidas (Desayuno, Almuerzo, Cena) con sus respectivos platos y bebidas.
+
+## API Flask
+La API Flask genera un plan nutricional basado en las calorías diarias requeridas, alergias y disgustos del usuario. La respuesta sigue una estructura JSON específica.
+
+### Ejemplo de Solicitud a la API
+```json
+{
+  "kcal": 2000,
+  "allergies": ["nueces"],
+  "dislikes": ["brócoli"]
+}
+```
+### Ejemplo de Respuesta de la API
+```json
+{
+  "Comidas": {
+    "Desayuno": {
+      "Bebida": {
+        "Titulo": "Jugo de naranja",
+        "Kcal": 100,
+        "Tiempo": "5 minutos",
+        "Dificultad": "Fácil",
+        "Ingredientes": ["Naranjas", "Azúcar"],
+        "Preparacion": ["Exprimir naranjas", "Agregar azúcar", "Mezclar bien"]
+      },
+      "Plato": {
+        "Titulo": "Tostadas con aguacate",
+        "Kcal": 300,
+        "Tiempo": "10 minutos",
+        "Dificultad": "Fácil",
+        "Ingredientes": ["Pan", "Aguacate", "Sal"],
+        "Preparacion": ["Tostar el pan", "Aplastar el aguacate", "Untar el aguacate en el pan"]
+      }
+    },
+    "Almuerzo": {
+      "Bebida": {
+        "Titulo": "Agua",
+        "Kcal": 0,
+        "Tiempo": "1 minuto",
+        "Dificultad": "Fácil",
+        "Ingredientes": ["Agua"],
+        "Preparacion": ["Servir agua en un vaso"]
+      },
+      "Plato": {
+        "Titulo": "Ensalada de pollo",
+        "Kcal": 500,
+        "Tiempo": "20 minutos",
+        "Dificultad": "Media",
+        "Ingredientes": ["Pollo", "Lechuga", "Tomate"],
+        "Preparacion": ["Cocer el pollo", "Cortar la lechuga y el tomate", "Mezclar todos los ingredientes"]
+      }
+    },
+    "Cena": {
+      "Bebida": {
+        "Titulo": "Té",
+        "Kcal": 2,
+        "Tiempo": "5 minutos",
+        "Dificultad": "Fácil",
+        "Ingredientes": ["Té", "Agua"],
+        "Preparacion": ["Hervir agua", "Agregar té", "Servir"]
+      },
+      "Plato": {
+        "Titulo": "Sopa de verduras",
+        "Kcal": 200,
+        "Tiempo": "30 minutos",
+        "Dificultad": "Media",
+        "Ingredientes": ["Zanahorias", "Papas", "Caldo de verduras"],
+        "Preparacion": ["Cortar las verduras", "Hervir en caldo", "Servir caliente"]
+      }
+    }
+  }
+}
+```
+---
 # Compra (.js)
 
 ## Descripción
