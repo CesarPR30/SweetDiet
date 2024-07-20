@@ -2,15 +2,23 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  API_KEY,
+  AUTH_DOMAIN,
+  PROJECT_ID,
+  STORAGE_BUCKET,
+  MESSAGING_SENDER_ID,
+  APP_ID,
+} from '@env';
 
 // Configuración de Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyAZodIg9-iVaySdjcvhz_duqeh4V24lpD8",
-  authDomain: "loginsd-a8608.firebaseapp.com",
-  projectId: "loginsd-a8608",
-  storageBucket: "loginsd-a8608.appspot.com",
-  messagingSenderId: "357632912683",
-  appId: "1:357632912683:web:6ce5b4dc76328a5dca296e"
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
 };
 
 // Inicializa Firebase
