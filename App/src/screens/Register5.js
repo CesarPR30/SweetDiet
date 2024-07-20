@@ -1,0 +1,163 @@
+import React from 'react';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Ionicons, FontAwesome5, AntDesign, FontAwesome } from '@expo/vector-icons';
+
+const Register5 = ({ navigation, route }) => {
+  const {
+    selectedActivity,
+    selectedGender,
+    birthdate,
+    height,
+    weight,
+    activityLevel,
+    allergies: allergyList,
+    dislikes: dislikeList,
+    pesoObjetivo,
+    kcalDiarias,
+    edad,
+  } = route.params;
+
+  const handleNavigateToRegister6 = () => {
+    navigation.navigate('Register6', {
+      selectedActivity,
+      selectedGender,
+      birthdate,
+      height,
+      weight,
+      activityLevel,
+      allergies: allergyList,
+      dislikes: dislikeList,
+      pesoObjetivo,
+      kcalDiarias,
+      edad,
+    });
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Ionicons name="chevron-back" size={24} color="#7DB866" />
+      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={[styles.button, styles.appleButton]}>
+          <Ionicons name="logo-apple" size={24} color="#fff" style={styles.icon} />
+          <Text style={[styles.buttonText, styles.appleText]}>Continuar con Apple</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.googleButton]}>
+          <AntDesign name="google" size={24} color="#ccc" style={styles.icon} />
+          <Text style={[styles.buttonText, styles.googleText]}>Continuar con Google</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.facebookButton]}>
+          <FontAwesome name="facebook-f" size={24} color="#fff" style={styles.icon} />
+          <Text style={[styles.buttonText, styles.facebookText]}>Continuar con Facebook</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.emailButton]} onPress={handleNavigateToRegister6}>
+          <Ionicons name="mail" size={24} color="#fff" style={styles.icon} />
+          <Text style={[styles.buttonText, styles.emailText]}>Continuar con Correo</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>
+          Al continuar, estarás aceptando nuestros:{' '}
+        </Text>
+        <TouchableOpacity>
+          <Text style={styles.linkText}>Términos y Condiciones</Text>
+        </TouchableOpacity>
+        <Text style={styles.footerText}> y </Text>
+        <TouchableOpacity>
+          <Text style={styles.linkText}>Política de Privacidad</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 40,
+        alignItems: 'center',
+      },
+  backButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '80%',
+    paddingVertical: 10,
+    paddingHorizontal: 55,
+    marginVertical: 10,
+    borderRadius: 15,
+  },
+  icon: {
+    marginRight: 10,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  appleButton: {
+    backgroundColor: '#000',
+  },
+  appleText: {
+    color: '#fff',
+  },
+  googleButton: {
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 11.2,
+    elevation: 10,
+  },
+  googleText: {
+    color: '#000',
+  },
+  facebookButton: {
+    backgroundColor: '#4B69A9',
+  },
+  facebookText: {
+    color: '#fff',
+  },
+  emailButton: {
+    backgroundColor: '#7CBC71',
+  },
+  emailText: {
+    color: '#fff',
+  },
+  footer: {
+    alignItems: 'center',
+    marginHorizontal: 20,
+    marginBottom: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  footerText: {
+    fontSize: 14,
+    color: '#000',
+  },
+  linkText: {
+    fontSize: 14,
+    color: '#7DB866',
+    textDecorationLine: 'underline',
+  },
+});
+
+export default Register5;
