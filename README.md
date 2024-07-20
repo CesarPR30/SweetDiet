@@ -73,7 +73,7 @@ El usuario tiene los siguientes derechos respecto a su información personal:
 
 ---
 
-# Shop (.tsx)
+# Compra (.js)
 
 ## Descripción
 
