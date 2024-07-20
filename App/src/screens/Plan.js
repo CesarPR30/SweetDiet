@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
+import { GOOGLE_API_KEY } from '@env';
 
 const MAX_RETRIES = 5; // Máximo número de reintentos
 
@@ -185,7 +186,7 @@ const Plan = () => {
       } else {
         const response = await axios.get(`https://www.googleapis.com/customsearch/v1`, {
           params: {
-            key: 'AIzaSyBijpdm4Z0t3EHB_loVO3KH40VYKfm5nEI',
+            key: GOOGLE_API_KEY,
             cx: 'd4eb16ae42d5345a4',
             q: query,
             searchType: 'image',
